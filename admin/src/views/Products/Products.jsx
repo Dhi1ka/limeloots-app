@@ -6,8 +6,8 @@ import axios from "axios";
 const Products = () => {
   const [products, setProducts] = useState([]);
 
-  const getProducts = () => {
-    axios({
+  const getProducts = async () => {
+    await axios({
       method: "GET",
       url: "http://localhost:5000/products",
     })
@@ -19,12 +19,41 @@ const Products = () => {
       });
   };
 
+  const deleteProduct = async (id) => {
+    await axios({
+      method: "DELETE",
+      url: `http://localhost:5000/products/delete/${id}`,
+      data: {
+        id,
+      },
+    });
+
+    response
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    products.map((product) => {
+      console.log(product.id);
+    });
+    // console.log(deleteProduct(products));
+  };
+
   useEffect(() => {
     getProducts();
   }, [products]);
 
   return (
     <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <Link className="btn btn-dark btn-sm mt-4" to="/products/create">
+        Create Product
+      </Link>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <Table hover responsive>
           <thead>
@@ -77,12 +106,12 @@ const Products = () => {
                     >
                       Edit
                     </Link>
-                    <Link
-                      to={`delete/${product.id}`}
+                    <Button
+                      onClick={(e) => handleDelete(e)}
                       className="btn btn-outline-danger btn-sm"
                     >
                       Delete
-                    </Link>
+                    </Button>
                   </td>
                 </tr>
               );
