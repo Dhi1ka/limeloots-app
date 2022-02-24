@@ -8,8 +8,8 @@ import {
   EditProduct,
   Profile,
   Account,
+  NotFound,
 } from "./views";
-import { Header, Sidebar, Footer } from "./components";
 import "./assets/css/dashboard.css";
 import "./assets/css/bootstrap.css";
 
@@ -18,18 +18,16 @@ import "./App.css";
 const App = () => {
   return (
     <div>
-      <Header />
-      <Sidebar />
       <Routes>
-        <Route path="/" element={<Admin />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/detail/:id" element={<DetailProduct />} />
-        <Route path="/products/create" element={<CreateProduct />} />
-        <Route path="/products/edit/:id" element={<EditProduct />} />
+        <Route path="/admin/dashboard" element={<Admin />} />
+        <Route path="/admin/products" element={<Products />} />
+        <Route path="/admin/products/detail/:id" element={<DetailProduct />} />
+        <Route path="/admin/products/create" element={<CreateProduct />} />
+        <Route path="/admin/products/edit/:id" element={<EditProduct />} />
         <Route path="/admin/profile" element={<Profile />} />
         <Route path="/admin/account-setting" element={<Account />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
-      <Footer />
     </div>
   );
 };
