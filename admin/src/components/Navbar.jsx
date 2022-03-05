@@ -1,15 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/admin/dashboard">
-          Limeloots
-        </Link>
+        <div className="navbar-brand"></div>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler mb-3"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -21,21 +18,6 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link
-                className="nav-link active"
-                aria-current="page"
-                to="/admin/products"
-              >
-                Products
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/admin/orders">
-                Orders
-              </Link>
-            </li>
-
             <form className="d-flex">
               <input
                 className="form-control me-2"
@@ -58,7 +40,7 @@ const Navbar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Admin
               </a>
               <ul
                 className="dropdown-menu dropdown-menu-end ms-auto"
@@ -66,20 +48,15 @@ const Navbar = () => {
               >
                 <li>
                   <a className="dropdown-item" href="#">
-                    Action
+                    Account Profile
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
+                  <hr className="dropdown-divider" />
                 </li>
                 <li>
                   <a className="dropdown-item" href="#">
-                    Something else here
+                    Logout
                   </a>
                 </li>
               </ul>
