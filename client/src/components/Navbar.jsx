@@ -1,15 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <div className="navbar-brand">Limeloots</div>
+        <div className="navbar-brand">
+          <Link className="text-decoration-none" to="/">
+            Limeloots
+          </Link>
+        </div>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a href="#" className="nav-link active">
+            <Link className="nav-link active" to="/products">
               Our Products
-            </a>
+            </Link>
           </li>
         </ul>
         <button
@@ -27,9 +32,9 @@ const Navbar = () => {
           <ul className="me-auto"></ul>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a href="#" className="nav-link">
+              <Link className="nav-link" to="/cart">
                 Cart
-              </a>
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
