@@ -1,0 +1,12 @@
+tbody {
+  counter-reset: serial-number;
+}
+
+tbody td:first-child::before {
+  counter-increment: serial-number;
+  content: counter(serial-number);
+}
+
+textarea {
+  height: 100px;
+}

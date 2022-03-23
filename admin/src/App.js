@@ -8,6 +8,7 @@ import Products from "./views/Products/Products";
 import Orders from "./views/Orders/Orders";
 import Members from "./views/Members/Members";
 import NotFound from "./views/NotFound";
+import CreateProduct from "./views/Products/CreateProduct";
 import "./main.css";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
       <Route path="/admin/register" element={<Register />} />
       <Route path="/admin/dashboard" element={<Dashboard />} />
       <Route path="/admin/products" element={<Products />} />
+      <Route path="/admin/products/create" element={<CreateProduct />} />
       <Route path="/admin/orders" element={<Orders />} />
       <Route path="/admin/members" element={<Members />} />
       <Route path="/*" element={<NotFound />} />
