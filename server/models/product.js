@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             message: "Price required!",
           },
-          isNumeric: {
-            message: "Price must be numeric!",
+          isInt: {
+            message: "Price must be integer!",
           },
         },
       },
@@ -49,29 +49,75 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             message: "Stock required!",
           },
-          isNumeric: {
-            message: "Stock must be numeric!",
+          isInt: {
+            message: "Stock must be integer!",
           },
         },
       },
-      expire: DataTypes.DATE,
+      expire: {
+        type: DataTypes.DATE,
+        validate: {
+          notEmpty: {
+            message: "Expire date required!",
+          },
+          isDate: {
+            message: "Date format required!",
+          },
+        },
+      },
       weight: {
         type: DataTypes.INTEGER,
         validate: {
           notEmpty: {
             message: "Weight required!",
           },
-          isNumeric: {
-            message: "Weight must be numeric!",
+          isInt: {
+            message: "Weight must be integer!",
           },
         },
       },
-      category: DataTypes.STRING,
-      brand: DataTypes.STRING,
-      condition: DataTypes.STRING,
-      totalSold: DataTypes.INTEGER,
-      rating: DataTypes.INTEGER,
-      views: DataTypes.INTEGER,
+      category: {
+        type: DataTypes.STRING,
+        values: ["Jam", "Cream", "Other"],
+      },
+      brand: {
+        type: DataTypes.STRING,
+        values: ["Marawa", "Simply Kaya", "Other"],
+      },
+      condition: {
+        type: DataTypes.STRING,
+        values: ["Good", "Bad"],
+      },
+      totalSold: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            message: "Total Sold required!",
+          },
+          isInt: {
+            message: "Total Sold must be integer!",
+          },
+        },
+      },
+      rating: {
+        type: DataTypes.DECIMAL,
+        validate: {
+          isDecimal: {
+            message: "Rating must be decimal!",
+          },
+        },
+      },
+      views: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            message: "Views required!",
+          },
+          isInt: {
+            message: "Views must be integer!",
+          },
+        },
+      },
       userId: {
         type: DataTypes.INTEGER,
         validate: {

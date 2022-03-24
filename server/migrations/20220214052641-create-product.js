@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       rating: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DECIMAL,
       },
       views: {
         type: Sequelize.INTEGER,
