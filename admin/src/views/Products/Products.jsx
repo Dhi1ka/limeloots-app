@@ -73,7 +73,12 @@ const Products = () => {
                       <button className="btn btn-sm btn-warning">
                         <FaPencilAlt />
                       </button>
-                      <button className="btn btn-sm btn-danger">
+                      <button
+                        onClick={() =>
+                          axios.delete(`${url}/products/delete/${product.id}`)
+                        }
+                        className="btn btn-sm btn-danger"
+                      >
                         <FaTrashAlt />
                       </button>
                     </td>
