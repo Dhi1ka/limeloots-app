@@ -18,7 +18,7 @@ const Products = () => {
       .get(`${url}/products`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
-  }, []);
+  }, [setProducts]);
 
   return (
     <div className="container-fluid">

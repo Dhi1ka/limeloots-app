@@ -28,7 +28,7 @@ const CreateProduct = () => {
 
     axios
       .post(`${url}/products/create`, postProduct)
-      .then((response) => console.log(response.data))
+      .then((response) => setPostProduct(response.data))
       .catch((error) => console.error(error));
 
     navigate("/admin/products");
@@ -41,7 +41,7 @@ const CreateProduct = () => {
         <div className="col">
           <Navbar />
           <h1>Create Product</h1>
-          <form onSubmit={handleSubmit}>
+          <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
               <input
                 className="form-control"
@@ -60,8 +60,8 @@ const CreateProduct = () => {
               <textarea
                 className="form-control"
                 type="text"
-                name="description"
-                id="description"
+                name="desc"
+                id="desc"
                 placeholder="Description"
                 onChange={(e) =>
                   setPostProduct({
@@ -130,45 +130,55 @@ const CreateProduct = () => {
               />
               <label htmlFor="weight">Weight</label>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                className="form-control"
-                type="text"
+            <div className="mb-3">
+              <label className="form-label" htmlFor="category">
+                Category
+              </label>
+              <select
+                className="form-select"
                 name="category"
                 id="category"
-                placeholder="Category"
                 onChange={(e) =>
                   setPostProduct({ ...postProduct, category: e.target.value })
                 }
-              />
-              <label htmlFor="category">Category</label>
+              >
+                <option value="Jam">Jam</option>
+                <option value="Cream">Cream</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                className="form-control"
-                type="text"
+            <div className="mb-3">
+              <label className="form-label" htmlFor="brand">
+                Brand
+              </label>
+              <select
+                className="form-select"
                 name="brand"
                 id="brand"
-                placeholder="Brand"
                 onChange={(e) =>
                   setPostProduct({ ...postProduct, brand: e.target.value })
                 }
-              />
-              <label htmlFor="brand">Brand</label>
+              >
+                <option value="Marawa">Marawa</option>
+                <option value="Simply Kaya">Simply Kaya</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
-            <div className="form-floating mb-3">
-              <input
-                className="form-control"
-                type="text"
+            <div className="mb-3">
+              <label className="form-label" htmlFor="condition">
+                Condition
+              </label>
+              <select
+                className="form-select"
                 name="condition"
                 id="condition"
-                placeholder="Condition"
                 onChange={(e) =>
                   setPostProduct({ ...postProduct, condition: e.target.value })
                 }
-                required
-              />
-              <label htmlFor="condition">Condition</label>
+              >
+                <option value="Good">Good</option>
+                <option value="Bad">Bad</option>
+              </select>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -193,7 +203,7 @@ const CreateProduct = () => {
                 className="form-range"
                 name="rating"
                 id="rating"
-                min="0"
+                step="0.1"
                 max="5"
                 onChange={(e) =>
                   setPostProduct({ ...postProduct, rating: e.target.value })
