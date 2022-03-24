@@ -27,8 +27,8 @@ const CreateProduct = () => {
     e.preventDefault();
 
     axios
-      .post(`${url}/products/create`)
-      .then((response) => console.log(response))
+      .post(`${url}/products/create`, postProduct)
+      .then((response) => console.log(response.data))
       .catch((error) => console.error(error));
 
     navigate("/admin/products");
@@ -49,6 +49,9 @@ const CreateProduct = () => {
                 name="name"
                 id="name"
                 placeholder="Name"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, name: e.target.value })
+                }
                 required
               />
               <label htmlFor="name">Name</label>
@@ -60,6 +63,12 @@ const CreateProduct = () => {
                 name="description"
                 id="description"
                 placeholder="Description"
+                onChange={(e) =>
+                  setPostProduct({
+                    ...postProduct,
+                    desc: e.target.value,
+                  })
+                }
                 required
                 style={{ height: 100 }}
               ></textarea>
@@ -72,6 +81,9 @@ const CreateProduct = () => {
                 name="price"
                 id="price"
                 placeholder="Price"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, price: e.target.value })
+                }
                 required
               />
               <label htmlFor="price">Price</label>
@@ -83,6 +95,9 @@ const CreateProduct = () => {
                 name="stock"
                 id="stock"
                 placeholder="Stocks"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, stock: e.target.value })
+                }
                 required
               />
               <label htmlFor="stock">Stocks</label>
@@ -94,6 +109,9 @@ const CreateProduct = () => {
                 name="expire"
                 id="expire"
                 placeholder="Expire"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, expire: e.target.value })
+                }
                 required
               />
               <label htmlFor="expire">Expire</label>
@@ -105,6 +123,9 @@ const CreateProduct = () => {
                 name="weight"
                 id="weight"
                 placeholder="Weight"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, weight: e.target.value })
+                }
                 required
               />
               <label htmlFor="weight">Weight</label>
@@ -116,6 +137,9 @@ const CreateProduct = () => {
                 name="category"
                 id="category"
                 placeholder="Category"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, category: e.target.value })
+                }
               />
               <label htmlFor="category">Category</label>
             </div>
@@ -126,6 +150,9 @@ const CreateProduct = () => {
                 name="brand"
                 id="brand"
                 placeholder="Brand"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, brand: e.target.value })
+                }
               />
               <label htmlFor="brand">Brand</label>
             </div>
@@ -136,6 +163,9 @@ const CreateProduct = () => {
                 name="condition"
                 id="condition"
                 placeholder="Condition"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, condition: e.target.value })
+                }
                 required
               />
               <label htmlFor="condition">Condition</label>
@@ -147,6 +177,9 @@ const CreateProduct = () => {
                 name="totalSold"
                 id="totalSold"
                 placeholder="Total Sold"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, totalSold: e.target.value })
+                }
                 required
               />
               <label htmlFor="totalSold">Total Sold</label>
@@ -162,6 +195,9 @@ const CreateProduct = () => {
                 id="rating"
                 min="0"
                 max="5"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, rating: e.target.value })
+                }
                 required
               />
             </div>
@@ -172,6 +208,9 @@ const CreateProduct = () => {
                 name="views"
                 id="views"
                 placeholder="Views"
+                onChange={(e) =>
+                  setPostProduct({ ...postProduct, views: e.target.value })
+                }
                 required
               />
               <label htmlFor="views">Views</label>
