@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcPlus } from "react-icons/fc";
 import { FaPencilAlt } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
@@ -8,8 +8,10 @@ import { FaTrashAlt } from "react-icons/fa";
 import "./product.css";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
+import swal from "sweetalert";
 
 const Products = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = React.useState([]);
   const url = "http://localhost:5000";
 
@@ -70,13 +72,39 @@ const Products = () => {
                     <td>{product.rating}</td>
                     <td>{product.views}</td>
                     <td>
-                      <button className="btn btn-sm btn-warning">
+                      <Link
+                        to={`/admin/products/edit/${product.id}`}
+                        className="btn btn-sm btn-warning me-2"
+                      >
                         <FaPencilAlt />
-                      </button>
+                      </Link>
                       <button
-                        onClick={() =>
-                          axios.delete(`${url}/products/delete/${product.id}`)
-                        }
+                        onClick={(e) => {
+                          e.preventDefault();
+
+                          swal({
+                            title: "Are you sure?",
+                            text: "This product will be deleted!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                          }).then((willDelete) => {
+                            if (willDelete) {
+                              axios.delete(
+                                `${url}/products/delete/${product.id}`,
+                              );
+                              swal(
+                                "Successful! The Product has been deleted!",
+                                {
+                                  icon: "success",
+                                },
+                              );
+                              navigate("/admin/products");
+                            } else {
+                              return;
+                            }
+                          });
+                        }}
                         className="btn btn-sm btn-danger"
                       >
                         <FaTrashAlt />

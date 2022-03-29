@@ -1,15 +1,16 @@
 import * as React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-const CreateProduct = () => {
+const EditProduct = () => {
   const url = "http://localhost:5000";
   const navigate = useNavigate();
-  const [postProduct, setPostProduct] = React.useState({
+  const { id } = useParams();
+  const [product, setProduct] = React.useState({
     name: "",
     desc: "",
     price: "",
@@ -24,17 +25,36 @@ const CreateProduct = () => {
     views: "",
   });
 
+  React.useEffect(() => {
+    axios
+      .get(`${url}/products/detail/${id}`)
+      .then((response) => setProduct(response.data))
+      .catch((error) => console.error(error));
+  }, [id]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post(`${url}/products/create`, postProduct)
-      .then((response) => {
-        setPostProduct(response.data);
-        swal("Successful!", "The Product has been saved!", "success");
-        navigate("/admin/products");
-      })
-      .catch((error) => console.error(error));
+    swal({
+      title: "Are you sure want to update?",
+      text: "You will update the change!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willUpdate) => {
+      if (willUpdate) {
+        axios
+          .put(`${url}/products/edit/${id}`, product)
+          .then((response) => {
+            setProduct(response.data);
+            swal("Successful!", "The Product has been updated!", "success");
+            navigate("/admin/products");
+          })
+          .catch((error) => console.error(error));
+      } else {
+        return;
+      }
+    });
   };
 
   const handleBack = (e) => {
@@ -61,7 +81,7 @@ const CreateProduct = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>Create Product</h1>
+          <h1>Edit Product</h1>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
               <input
@@ -70,8 +90,9 @@ const CreateProduct = () => {
                 name="name"
                 id="name"
                 placeholder="Name"
+                value={product.name}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, name: e.target.value })
+                  setProduct({ ...product, name: e.target.value })
                 }
                 required
               />
@@ -84,9 +105,10 @@ const CreateProduct = () => {
                 name="desc"
                 id="desc"
                 placeholder="Description"
+                value={product.desc}
                 onChange={(e) =>
-                  setPostProduct({
-                    ...postProduct,
+                  setProduct({
+                    ...product,
                     desc: e.target.value,
                   })
                 }
@@ -102,8 +124,9 @@ const CreateProduct = () => {
                 name="price"
                 id="price"
                 placeholder="Price"
+                value={product.price}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, price: e.target.value })
+                  setProduct({ ...product, price: e.target.value })
                 }
                 required
               />
@@ -116,8 +139,9 @@ const CreateProduct = () => {
                 name="stock"
                 id="stock"
                 placeholder="Stocks"
+                value={product.stock}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, stock: e.target.value })
+                  setProduct({ ...product, stock: e.target.value })
                 }
                 required
               />
@@ -130,8 +154,9 @@ const CreateProduct = () => {
                 name="expire"
                 id="expire"
                 placeholder="Expire"
+                defaultValue={product.expire}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, expire: e.target.value })
+                  setProduct({ ...product, expire: e.target.value })
                 }
                 required
               />
@@ -144,8 +169,9 @@ const CreateProduct = () => {
                 name="weight"
                 id="weight"
                 placeholder="Weight"
+                value={product.weight}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, weight: e.target.value })
+                  setProduct({ ...product, weight: e.target.value })
                 }
                 required
               />
@@ -159,14 +185,14 @@ const CreateProduct = () => {
                 className="form-select"
                 name="category"
                 id="category"
+                value={product.category}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, category: e.target.value })
+                  setProduct({ ...product, category: e.target.value })
                 }
               >
-                <option value="Select One.." selected disabled>
-                  Select One..
+                <option value="Jam" selected>
+                  Jam
                 </option>
-                <option value="Jam">Jam</option>
                 <option value="Cream">Cream</option>
                 <option value="Other">Other</option>
               </select>
@@ -179,14 +205,14 @@ const CreateProduct = () => {
                 className="form-select"
                 name="brand"
                 id="brand"
+                value={product.brand}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, brand: e.target.value })
+                  setProduct({ ...product, brand: e.target.value })
                 }
               >
-                <option value="Select One.." selected disabled>
-                  Select One..
+                <option value="Marawa" selected>
+                  Marawa
                 </option>
-                <option value="Marawa">Marawa</option>
                 <option value="Simply Kaya">Simply Kaya</option>
                 <option value="Other">Other</option>
               </select>
@@ -199,14 +225,14 @@ const CreateProduct = () => {
                 className="form-select"
                 name="condition"
                 id="condition"
+                value={product.condition}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, condition: e.target.value })
+                  setProduct({ ...product, condition: e.target.value })
                 }
               >
-                <option value="Select One.." selected disabled>
-                  Select One..
+                <option value="Good" selected>
+                  Good
                 </option>
-                <option value="Good">Good</option>
                 <option value="Bad">Bad</option>
               </select>
             </div>
@@ -217,8 +243,9 @@ const CreateProduct = () => {
                 name="totalSold"
                 id="totalSold"
                 placeholder="Total Sold"
+                value={product.totalSold}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, totalSold: e.target.value })
+                  setProduct({ ...product, totalSold: e.target.value })
                 }
                 required
               />
@@ -235,8 +262,9 @@ const CreateProduct = () => {
                 id="rating"
                 step="0.1"
                 max="5"
+                value={product.rating}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, rating: e.target.value })
+                  setProduct({ ...product, rating: e.target.value })
                 }
                 required
               />
@@ -248,8 +276,9 @@ const CreateProduct = () => {
                 name="views"
                 id="views"
                 placeholder="Views"
+                value={product.views}
                 onChange={(e) =>
-                  setPostProduct({ ...postProduct, views: e.target.value })
+                  setProduct({ ...product, views: e.target.value })
                 }
                 required
               />
@@ -257,7 +286,7 @@ const CreateProduct = () => {
             </div>
             <div>
               <button type="submit" className="btn btn-primary me-2">
-                Save
+                Update
               </button>
               <button
                 type="button"
@@ -274,4 +303,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default EditProduct;
