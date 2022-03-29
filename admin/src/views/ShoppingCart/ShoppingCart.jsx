@@ -37,7 +37,7 @@ const ShoppingCart = () => {
             <thead>
               <tr>
                 <th>No</th>
-                <th>Create On</th>
+                <th>Created On</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -47,7 +47,7 @@ const ShoppingCart = () => {
                 return (
                   <tr key={cart.id}>
                     <td></td>
-                    <td>{cart.createOn}</td>
+                    <td>{cart.createdOn}</td>
                     <td>{cart.status}</td>
                     <td>
                       <Link
@@ -57,6 +57,7 @@ const ShoppingCart = () => {
                         <FaPencilAlt />
                       </Link>
                       <button
+                        className="btn btn-sm btn-danger"
                         onClick={(e) => {
                           e.preventDefault();
 

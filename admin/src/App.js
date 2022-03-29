@@ -10,6 +10,7 @@ import Members from "./views/Members/Members";
 import CreateProduct from "./views/Products/CreateProduct";
 import EditProduct from "./views/Products/EditProduct";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
+import CreateShoppingCart from "./views/ShoppingCart/CreateShoppingCart";
 import "./main.css";
 
 const App = () => {
@@ -25,6 +26,10 @@ const App = () => {
       <Route path="/admin/products/edit/:id" element={<EditProduct />} />
       {/* ShoppingCart Route */}
       <Route path="/admin/shopping-carts" element={<ShoppingCart />} />
+      <Route
+        path="/admin/shopping-carts/create"
+        element={<CreateShoppingCart />}
+      />
       <Route path="/admin/orders" element={<Orders />} />
       <Route path="/admin/members" element={<Members />} />
       <Route path="/*" element={<Dashboard />} />
