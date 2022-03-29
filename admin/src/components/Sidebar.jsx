@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BiTachometer, BiTable, BiUser, BiCartAlt } from "react-icons/bi";
+import {
+  BiTachometer,
+  BiTable,
+  BiUser,
+  BiCartAlt,
+  BiPackage,
+} from "react-icons/bi";
 
 const Sidebar = () => {
   return (
@@ -18,8 +24,19 @@ const Sidebar = () => {
           </li>
           <li>
             <Link className="nav-link px-0 align-middle" to="/admin/products">
-              <BiCartAlt fontSize={30} />
+              <BiPackage fontSize={30} />
               <span className="ms-1 d-none d-sm-inline">Products</span>{" "}
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="nav-link px-0 align-middle"
+              to="/admin/shopping-carts"
+            >
+              <BiCartAlt fontSize={30} />
+              <span className="ms-1 d-none d-sm-inline">
+                Shopping Cart
+              </span>{" "}
             </Link>
           </li>
           <li>
