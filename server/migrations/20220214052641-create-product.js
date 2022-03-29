@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       expire: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
       },
       weight: {
         type: Sequelize.INTEGER,

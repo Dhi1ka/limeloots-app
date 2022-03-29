@@ -55,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       expire: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         validate: {
           notEmpty: {
             message: "Expire date required!",
