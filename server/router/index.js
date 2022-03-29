@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 
 router.use("/users", userRouter);
 router.use("/products", productRouter);
-router.use("/carts", shoppingCartRouter);
+router.use("/shopping-carts", shoppingCartRouter);
 router.use("/orders", orderRouter);
 router.use("/product-images", productImageRouter);
 router.use("/line-items", lineItemRouter);

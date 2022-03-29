@@ -14,9 +14,36 @@ module.exports = (sequelize, DataTypes) => {
   }
   shoppingCart.init(
     {
-      createdOn: DataTypes.DATE,
-      status: DataTypes.STRING,
-      userId: DataTypes.INTEGER,
+      createdOn: {
+        type: DataTypes.DATEONLY,
+        validate: {
+          notEmpty: {
+            message: "Create On date required!",
+          },
+          isDate: {
+            message: "Date format required!",
+          },
+        },
+      },
+      status: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            message: "Status required!",
+          },
+        },
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        validate: {
+          notEmpty: {
+            message: "User ID required!",
+          },
+          isNumeric: {
+            message: "User ID must be numeric!",
+          },
+        },
+      },
     },
     {
       sequelize,
