@@ -64,11 +64,11 @@ module.exports = (sequelize, DataTypes) => {
             message: "Total Due must be numeric!",
           },
         },
-        get: function () {
-          if (totalQty > 2) {
-            return totalQty * discount;
-          }
-        },
+        // get: function () {
+        //   if (totalQty > 2) {
+        //     return totalQty * discount;
+        //   }
+        // },
       },
       totalQty: {
         type: DataTypes.INTEGER,
