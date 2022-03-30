@@ -15,7 +15,17 @@ module.exports = (sequelize, DataTypes) => {
   }
   order.init(
     {
-      createdOn: DataTypes.DATE,
+      createdOn: {
+        type: DataTypes.DATEONLY,
+        validate: {
+          notEmpty: {
+            message: "Created On required!",
+          },
+          isDate: {
+            message: "Date format required!",
+          },
+        },
+      },
       subtotal: {
         type: DataTypes.INTEGER,
         validate: {
@@ -34,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
             message: "Discount must be numeric!",
           },
         },
+        defaultValue: 5 / 100,
       },
       tax: {
         type: DataTypes.INTEGER,
@@ -52,6 +63,11 @@ module.exports = (sequelize, DataTypes) => {
           isNumeric: {
             message: "Total Due must be numeric!",
           },
+        },
+        get: function () {
+          if (totalQty > 2) {
+            return totalQty * discount;
+          }
         },
       },
       totalQty: {
@@ -91,11 +107,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       status: {
         type: DataTypes.STRING,
-        validate: {
-          notEmpty: {
-            message: "Status required!",
-          },
-        },
+        values: ["Open", "Cancelled", "Paid", "Shipping", "Closed"],
       },
       userId: {
         type: DataTypes.INTEGER,

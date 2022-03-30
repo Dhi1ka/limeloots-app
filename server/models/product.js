@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       condition: {
         type: DataTypes.STRING,
-        values: ["Good", "Bad"],
+        values: ["New", "Good", "Fresh"],
       },
       totalSold: {
         type: DataTypes.INTEGER,
