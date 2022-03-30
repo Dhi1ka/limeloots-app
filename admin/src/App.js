@@ -15,8 +15,9 @@ import EditShoppingCart from "./views/ShoppingCart/EditShoppingCart";
 import CreateOrder from "./views/Orders/CreateOrder";
 import EditOrder from "./views/Orders/EditOrder";
 import CreateProductImage from "./views/ProductImage/CreateProductImage";
-import "./main.css";
 import EditProductImage from "./views/ProductImage/EditProductImage";
+import LineItem from "./views/LineItem/LineItem";
+import "./main.css";
 
 const App = () => {
   const [user, setUser] = React.useState(null);
@@ -55,6 +56,8 @@ const App = () => {
         path="/admin/product-images/edit/:id"
         element={<EditProductImage />}
       />
+      {/* Line Item Route */}
+      <Route path="/admin/line-items" element={<LineItem />} />
       <Route path="/*" element={<Dashboard user={user} setUser={setUser} />} />
     </Routes>
   );
