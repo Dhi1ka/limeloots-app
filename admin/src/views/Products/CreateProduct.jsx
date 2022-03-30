@@ -206,8 +206,9 @@ const CreateProduct = () => {
                 <option value="Select One.." selected disabled>
                   Select One..
                 </option>
+                <option value="New">New</option>
                 <option value="Good">Good</option>
-                <option value="Bad">Bad</option>
+                <option value="Fresh">Fresh</option>
               </select>
             </div>
             <div className="form-floating mb-3">
