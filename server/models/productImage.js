@@ -25,12 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       fileSize: {
         type: DataTypes.INTEGER,
         validate: {
+          notEmpty: {
+            message: "File Size required!",
+          },
           isNumeric: {
             message: "File Size must be numeric!",
           },
         },
       },
-      fileType: DataTypes.STRING,
+      fileType: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            message: "File Type required!",
+          },
+        },
+        values: [".jpg", ".png"],
+      },
       primary: DataTypes.BOOLEAN,
       productId: {
         type: DataTypes.INTEGER,
