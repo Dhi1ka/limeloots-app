@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-const CreateShoppingCart = () => {
+const EditShoppingCart = () => {
   const url = "http://localhost:5000";
   const navigate = useNavigate();
   const { id } = useParams();
@@ -129,4 +129,4 @@ const CreateShoppingCart = () => {
   );
 };
 
-export default CreateShoppingCart;
+export default EditShoppingCart;

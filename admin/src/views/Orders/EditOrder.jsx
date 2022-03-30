@@ -1,15 +1,16 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-const CreateOrder = () => {
+const EditOrder = () => {
   const navigate = useNavigate();
   const url = "http://localhost:5000";
-  const [postOrder, setPostOrder] = React.useState({
+  const { id } = useParams();
+  const [order, setOrder] = React.useState({
     createdOn: "",
     subtotal: "",
     discount: "",
@@ -21,17 +22,37 @@ const CreateOrder = () => {
     address: "",
     status: "",
   });
+
+  React.useEffect(() => {
+    axios
+      .get(`${url}/orders/detail/${id}`)
+      .then((response) => setOrder(response.data))
+      .catch((error) => console.error(error));
+  }, [id]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post(`${url}/orders/create`, postOrder)
-      .then((response) => {
-        setPostOrder(response.data);
-        swal("Successful!", "The Order has been saved!", "success");
-        navigate("/admin/orders");
-      })
-      .catch((error) => console.error(error));
+    swal({
+      title: "Are you sure want to update?",
+      text: "You will update the change!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willUpdate) => {
+      if (willUpdate) {
+        axios
+          .put(`${url}/orders/edit/${id}`, order)
+          .then((response) => {
+            setOrder(response.data);
+            swal("Successful!", "The Order has been updated!", "success");
+            navigate("/admin/orders");
+          })
+          .catch((error) => console.error(error));
+      } else {
+        return;
+      }
+    });
   };
   const handleBack = (e) => {
     e.preventDefault();
@@ -57,7 +78,7 @@ const CreateOrder = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>Create Order</h1>
+          <h1>Edit Order</h1>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
               <input
@@ -66,8 +87,9 @@ const CreateOrder = () => {
                 name="createdOn"
                 id="createdOn"
                 placeholder="Created On"
+                value={order.createdOn}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, createdOn: e.target.value })
+                  setOrder({ ...order, createdOn: e.target.value })
                 }
                 required
               />
@@ -80,8 +102,9 @@ const CreateOrder = () => {
                 name="subtotal"
                 id="subtotal"
                 placeholder="Subtotal"
+                value={order.subtotal}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, subtotal: e.target.value })
+                  setOrder({ ...order, subtotal: e.target.value })
                 }
                 required
               />
@@ -94,8 +117,9 @@ const CreateOrder = () => {
                 name="discount"
                 id="discount"
                 placeholder="Discount"
+                value={order.discount}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, discount: e.target.value })
+                  setOrder({ ...order, discount: e.target.value })
                 }
                 required
               />
@@ -108,9 +132,8 @@ const CreateOrder = () => {
                 name="tax"
                 id="tax"
                 placeholder="Tax"
-                onChange={(e) =>
-                  setPostOrder({ ...postOrder, tax: e.target.value })
-                }
+                value={order.tax}
+                onChange={(e) => setOrder({ ...order, tax: e.target.value })}
                 required
               />
               <label htmlFor="tax">Tax</label>
@@ -122,8 +145,9 @@ const CreateOrder = () => {
                 name="totalDue"
                 id="totalDue"
                 placeholder="Total Due"
+                value={order.totalDue}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, totalDue: e.target.value })
+                  setOrder({ ...order, totalDue: e.target.value })
                 }
                 required
               />
@@ -136,8 +160,9 @@ const CreateOrder = () => {
                 name="totalQty"
                 id="totalQty"
                 placeholder="Total Qty"
+                value={order.totalQty}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, totalQty: e.target.value })
+                  setOrder({ ...order, totalQty: e.target.value })
                 }
                 required
               />
@@ -150,8 +175,9 @@ const CreateOrder = () => {
                 name="payTrxNumber"
                 id="payTrxNumber"
                 placeholder="Payment Transaction Number"
+                value={order.payTrxNumber}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, payTrxNumber: e.target.value })
+                  setOrder({ ...order, payTrxNumber: e.target.value })
                 }
                 required
               />
@@ -164,9 +190,8 @@ const CreateOrder = () => {
                 name="city"
                 id="city"
                 placeholder="City"
-                onChange={(e) =>
-                  setPostOrder({ ...postOrder, city: e.target.value })
-                }
+                value={order.city}
+                onChange={(e) => setOrder({ ...order, city: e.target.value })}
                 required
               />
               <label htmlFor="city">City</label>
@@ -178,8 +203,9 @@ const CreateOrder = () => {
                 name="address"
                 id="address"
                 placeholder="Address"
+                value={order.address}
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, address: e.target.value })
+                  setOrder({ ...order, address: e.target.value })
                 }
                 required
               />
@@ -193,9 +219,8 @@ const CreateOrder = () => {
                 className="form-select"
                 name="status"
                 id="status"
-                onChange={(e) =>
-                  setPostOrder({ ...postOrder, status: e.target.value })
-                }
+                value={order.status}
+                onChange={(e) => setOrder({ ...order, status: e.target.value })}
               >
                 <option value="Select One.." selected disabled>
                   Select One..
@@ -209,7 +234,7 @@ const CreateOrder = () => {
             </div>
             <div>
               <button type="submit" className="btn btn-primary me-2">
-                Save
+                Update
               </button>
               <button
                 type="button"
@@ -226,4 +251,4 @@ const CreateOrder = () => {
   );
 };
 
-export default CreateOrder;
+export default EditOrder;
