@@ -14,6 +14,7 @@ import CreateShoppingCart from "./views/ShoppingCart/CreateShoppingCart";
 import EditShoppingCart from "./views/ShoppingCart/EditShoppingCart";
 import CreateOrder from "./views/Orders/CreateOrder";
 import EditOrder from "./views/Orders/EditOrder";
+import CreateProductImage from "./views/ProductImage/CreateProductImage";
 import "./main.css";
 
 const App = () => {
@@ -43,8 +44,12 @@ const App = () => {
       <Route path="/admin/orders" element={<Orders />} />
       <Route path="/admin/orders/create" element={<CreateOrder />} />
       <Route path="/admin/orders/edit/:id" element={<EditOrder />} />
-
+      {/* Product Image Route */}
       <Route path="/admin/product-images" element={<ProductImage />} />
+      <Route
+        path="/admin/product-images/create"
+        element={<CreateProductImage />}
+      />
       <Route path="/*" element={<Dashboard user={user} setUser={setUser} />} />
     </Routes>
   );
