@@ -16,6 +16,7 @@ import CreateOrder from "./views/Orders/CreateOrder";
 import EditOrder from "./views/Orders/EditOrder";
 import CreateProductImage from "./views/ProductImage/CreateProductImage";
 import "./main.css";
+import EditProductImage from "./views/ProductImage/EditProductImage";
 
 const App = () => {
   const [user, setUser] = React.useState(null);
@@ -49,6 +50,10 @@ const App = () => {
       <Route
         path="/admin/product-images/create"
         element={<CreateProductImage />}
+      />
+      <Route
+        path="/admin/product-images/edit/:id"
+        element={<EditProductImage />}
       />
       <Route path="/*" element={<Dashboard user={user} setUser={setUser} />} />
     </Routes>
