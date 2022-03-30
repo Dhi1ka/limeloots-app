@@ -8,15 +8,15 @@ import swal from "sweetalert";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-const ShoppingCart = () => {
+const ProductImage = () => {
   const navigate = useNavigate();
-  const [shoppingCart, setShoppingCart] = React.useState([]);
   const url = "http://localhost:5000";
+  const [images, setImage] = React.useState([]);
 
   React.useEffect(() => {
     axios
-      .get(`${url}/shopping-carts`)
-      .then((response) => setShoppingCart(response.data))
+      .get(`${url}/product-images`)
+      .then((response) => setImage(response.data))
       .catch((error) => console.error(error));
   }, []);
 
@@ -26,32 +26,36 @@ const ShoppingCart = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>Shopping Cart</h1>
+          <h1>Product Image</h1>
           <Link
-            to="/admin/shopping-carts/create"
+            to="/admin/product-images/create"
             className=" mb-2 btn btn-sm btn-primary"
           >
-            <FcPlus fontSize={20} /> Create New Shopping Cart
+            <FcPlus fontSize={20} /> Create New Product Image
           </Link>
           <table className="table table-bordered table-hover table-sm table-responsive table-striped border-secondary">
             <thead>
               <tr>
                 <th>No</th>
-                <th>Created On</th>
-                <th>Status</th>
+                <th>File Name</th>
+                <th>File Size</th>
+                <th>File Type</th>
+                <th>Primary</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {shoppingCart.map((cart) => {
+              {images.map((image) => {
                 return (
-                  <tr key={cart.id}>
+                  <tr key={image.id}>
                     <td></td>
-                    <td>{cart.createdOn}</td>
-                    <td>{cart.status}</td>
+                    <td>{image.fileName}</td>
+                    <td>{image.fileSize}</td>
+                    <td>{image.fileType}</td>
+                    <td>{image.primary}</td>
                     <td>
                       <Link
-                        to={`/admin/shopping-carts/edit/${cart.id}`}
+                        to={`/admin/product-images/edit/${image.id}`}
                         className="btn btn-sm btn-warning me-2"
                       >
                         <FaPencilAlt />
@@ -63,7 +67,7 @@ const ShoppingCart = () => {
 
                           swal({
                             title: "Are you sure?",
-                            text: "This shopping cart will be deleted!",
+                            text: "This product image will be deleted!",
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
@@ -71,15 +75,15 @@ const ShoppingCart = () => {
                             .then((willDelete) => {
                               if (willDelete) {
                                 axios.delete(
-                                  `${url}/shopping-carts/delete/${cart.id}`,
+                                  `${url}/product-images/delete/${image.id}`,
                                 );
                                 swal(
-                                  "Successful! The Shopping Cart has been deleted!",
+                                  "Successful! The Product Image has been deleted!",
                                   {
                                     icon: "success",
                                   },
                                 );
-                                navigate("/admin/shopping-carts");
+                                navigate("/admin/product-images");
                               } else {
                                 return;
                               }
@@ -101,4 +105,4 @@ const ShoppingCart = () => {
   );
 };
 
-export default ShoppingCart;
+export default ProductImage;

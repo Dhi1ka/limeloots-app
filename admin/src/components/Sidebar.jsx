@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import {
   BiTachometer,
   BiTable,
-  BiUser,
+  BiImage,
   BiCartAlt,
   BiPackage,
+  BiData,
 } from "react-icons/bi";
 
 const Sidebar = () => {
@@ -46,9 +47,20 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link className="nav-link px-0 align-middle" to="/admin/members  ">
-              <BiUser fontSize={30} />
-              <span className="ms-1 d-none d-sm-inline">Members</span>{" "}
+            <Link
+              className="nav-link px-0 align-middle"
+              to="/admin/product-images"
+            >
+              <BiImage fontSize={30} />
+              <span className="ms-1 d-none d-sm-inline">
+                Product Images
+              </span>{" "}
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link px-0 align-middle" to="/admin/line-items">
+              <BiData fontSize={30} />
+              <span className="ms-1 d-none d-sm-inline">Line Items</span>{" "}
             </Link>
           </li>
         </ul>

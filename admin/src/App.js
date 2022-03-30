@@ -6,7 +6,7 @@ import Register from "./components/Register";
 import Dashboard from "./views/Dashboard";
 import Products from "./views/Products/Products";
 import Orders from "./views/Orders/Orders";
-import Members from "./views/Members/Members";
+import ProductImage from "./views/ProductImage/ProductImage";
 import CreateProduct from "./views/Products/CreateProduct";
 import EditProduct from "./views/Products/EditProduct";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
@@ -17,6 +17,8 @@ import EditOrder from "./views/Orders/EditOrder";
 import "./main.css";
 
 const App = () => {
+  const [user, setUser] = React.useState(null);
+
   return (
     <Routes>
       {/* Auth Route */}
@@ -42,8 +44,8 @@ const App = () => {
       <Route path="/admin/orders/create" element={<CreateOrder />} />
       <Route path="/admin/orders/edit/:id" element={<EditOrder />} />
 
-      <Route path="/admin/members" element={<Members />} />
-      <Route path="/*" element={<Dashboard />} />
+      <Route path="/admin/product-images" element={<ProductImage />} />
+      <Route path="/*" element={<Dashboard user={user} setUser={setUser} />} />
     </Routes>
   );
 };
