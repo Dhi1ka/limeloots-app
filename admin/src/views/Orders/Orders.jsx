@@ -3,7 +3,7 @@ import axios from "axios";
 import { FcPlus } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-import { FaPencilAlt } from "react-icons/fa";
+import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
@@ -103,7 +103,9 @@ const Orders = () => {
                             })
                             .catch((error) => console.error(error));
                         }}
-                      ></button>
+                      >
+                        <FaTrashAlt />
+                      </button>
                     </td>
                   </tr>
                 );

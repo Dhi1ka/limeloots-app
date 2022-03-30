@@ -12,6 +12,7 @@ import EditProduct from "./views/Products/EditProduct";
 import ShoppingCart from "./views/ShoppingCart/ShoppingCart";
 import CreateShoppingCart from "./views/ShoppingCart/CreateShoppingCart";
 import EditShoppingCart from "./views/ShoppingCart/EditShoppingCart";
+import CreateOrder from "./views/Orders/CreateOrder";
 import "./main.css";
 
 const App = () => {
@@ -35,7 +36,9 @@ const App = () => {
         path="/admin/shopping-carts/edit/:id"
         element={<EditShoppingCart />}
       />
+      {/* Order Route */}
       <Route path="/admin/orders" element={<Orders />} />
+      <Route path="/admin/orders/create" element={<CreateOrder />} />
       <Route path="/admin/members" element={<Members />} />
       <Route path="/*" element={<Dashboard />} />
     </Routes>

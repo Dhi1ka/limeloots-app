@@ -26,7 +26,7 @@ const ShoppingCart = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>ShoppingCart</h1>
+          <h1>Shopping Cart</h1>
           <Link
             to="/admin/shopping-carts/create"
             className=" mb-2 btn btn-sm btn-primary"
