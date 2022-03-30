@@ -18,6 +18,7 @@ import CreateProductImage from "./views/ProductImage/CreateProductImage";
 import EditProductImage from "./views/ProductImage/EditProductImage";
 import LineItem from "./views/LineItem/LineItem";
 import CreateLineItem from "./views/LineItem/CreateLineItem";
+import EditLineItem from "./views/LineItem/EditLineItem";
 import "./main.css";
 
 const App = () => {
@@ -60,6 +61,7 @@ const App = () => {
       {/* Line Item Route */}
       <Route path="/admin/line-items" element={<LineItem />} />
       <Route path="/admin/line-items/create" element={<CreateLineItem />} />
+      <Route path="/admin/line-items/edit/:id" element={<EditLineItem />} />
       <Route path="/*" element={<Dashboard user={user} setUser={setUser} />} />
     </Routes>
   );
