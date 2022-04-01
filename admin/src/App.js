@@ -29,7 +29,10 @@ const App = () => {
       {/* Auth Route */}
       <Route path="/admin/login" element={<Login />} />
       <Route path="/admin/register" element={<Register />} />
-      <Route path="/admin/dashboard" element={<Dashboard />} />
+      <Route
+        path="/admin/dashboard"
+        element={<Dashboard user={user} setUser={setUser} />}
+      />
       {/* Product Route */}
       <Route path="/admin/products" element={<Products />} />
       <Route path="/admin/products/create" element={<CreateProduct />} />

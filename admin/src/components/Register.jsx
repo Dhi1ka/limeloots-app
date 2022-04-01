@@ -1,19 +1,39 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./auth.css";
 
 const Register = () => {
+  const url = "http://localhost:5000";
+  const navigate = useNavigate();
+  const [registerUser, setRegisterUser] = React.useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
   const handleRegister = (e) => {
     e.preventDefault();
 
-    console.log("register button clicked!");
+    axios
+      .post(`${url}/users/auth/register`, registerUser)
+      .then((response) => {
+        setRegisterUser(response.data);
+        navigate("/admin/login");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
     <div className="container mt-4 w-50">
       <h1 className="text-center mb-3">Register Limeloots CMS</h1>
-      <form className="needs-validation" noValidate>
+      <form
+        className="needs-validation"
+        noValidate
+        autoComplete="off"
+        onSubmit={handleRegister}
+      >
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -24,6 +44,9 @@ const Register = () => {
             id="name"
             name="name"
             placeholder="Enter Name"
+            onChange={(e) =>
+              setRegisterUser({ ...registerUser, name: e.target.value })
+            }
             required
           />
         </div>
@@ -37,6 +60,9 @@ const Register = () => {
             id="email"
             name="email"
             placeholder="Enter Email"
+            onChange={(e) =>
+              setRegisterUser({ ...registerUser, email: e.target.value })
+            }
             required
           />
         </div>
@@ -50,15 +76,14 @@ const Register = () => {
             id="password"
             name="password"
             placeholder="Enter Password"
+            onChange={(e) =>
+              setRegisterUser({ ...registerUser, password: e.target.value })
+            }
             required
           />
         </div>
         <div className="text-center">
-          <button
-            onClick={handleRegister}
-            className="btn btn-primary"
-            type="submit"
-          >
+          <button className="btn btn-primary" type="submit">
             Register
           </button>
         </div>

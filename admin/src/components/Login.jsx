@@ -1,19 +1,39 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./auth.css";
 
 const Login = () => {
+  const url = "http://localhost:5000";
+  const navigate = useNavigate();
+  const [loginUser, setLoginUser] = React.useState({
+    email: "",
+    password: "",
+  });
+
   const handleLogin = (e) => {
     e.preventDefault();
 
-    console.log("login button clicked!");
+    axios
+      .post(`${url}/users/auth/login`, loginUser)
+      .then((response) => {
+        setLoginUser(response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
     <div className="container mt-4 w-50">
       <h1 className="text-center mb-3">Login Limeloots CMS</h1>
-      <form className="needs-validation" noValidate>
+      <form
+        className="needs-validation"
+        noValidate
+        autoComplete="off"
+        onSubmit={handleLogin}
+      >
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
             Email
@@ -24,6 +44,9 @@ const Login = () => {
             id="email"
             name="email"
             placeholder="Enter Email"
+            onChange={(e) =>
+              setLoginUser({ ...loginUser, email: e.target.value })
+            }
             required
           />
         </div>
@@ -37,15 +60,14 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="Enter Password"
+            onChange={(e) =>
+              setLoginUser({ ...loginUser, password: e.target.value })
+            }
             required
           />
         </div>
         <div className="text-center">
-          <button
-            onClick={handleLogin}
-            className="btn btn-primary"
-            type="submit"
-          >
+          <button className="btn btn-primary" type="submit">
             Login
           </button>
         </div>
