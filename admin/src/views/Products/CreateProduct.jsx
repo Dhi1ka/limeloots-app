@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-const CreateProduct = () => {
+const CreateProduct = ({ user, setUser }) => {
   const url = "http://localhost:5000";
   const navigate = useNavigate();
   const [postProduct, setPostProduct] = React.useState({
@@ -23,6 +23,15 @@ const CreateProduct = () => {
     rating: "",
     views: "",
   });
+
+  React.useEffect(() => {
+    const loginUser = localStorage.getItem("user", JSON.parse(user));
+    if (!loginUser) {
+      navigate("/admin/login");
+    } else {
+      setUser(loginUser);
+    }
+  }, [navigate, user, setUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

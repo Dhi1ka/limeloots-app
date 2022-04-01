@@ -14,14 +14,14 @@ const Dashboard = ({ user, setUser }) => {
     } else {
       setUser(loginUser);
     }
-  });
+  }, [navigate, user, setUser]);
 
   return (
     <div className="container-fluid">
       <div className="row flex-nowrap">
         <Sidebar />
         <div className="col">
-          <Navbar />
+          <Navbar user={user} setUser={setUser} />
           <h1>Dashboard</h1>
         </div>
       </div>

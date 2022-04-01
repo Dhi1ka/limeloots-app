@@ -10,10 +10,19 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import swal from "sweetalert";
 
-const Products = () => {
+const Products = ({ user, setUser }) => {
   const navigate = useNavigate();
   const [products, setProducts] = React.useState([]);
   const url = "http://localhost:5000";
+
+  React.useEffect(() => {
+    const loginUser = localStorage.getItem("user", JSON.parse(user));
+    if (!loginUser) {
+      navigate("/admin/login");
+    } else {
+      setUser(loginUser);
+    }
+  }, [navigate, user, setUser]);
 
   React.useEffect(() => {
     axios

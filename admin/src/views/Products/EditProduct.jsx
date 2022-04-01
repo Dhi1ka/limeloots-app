@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
-const EditProduct = () => {
+const EditProduct = ({ user, setUser }) => {
   const url = "http://localhost:5000";
   const navigate = useNavigate();
   const { id } = useParams();
@@ -24,6 +24,15 @@ const EditProduct = () => {
     rating: "",
     views: "",
   });
+
+  React.useEffect(() => {
+    const loginUser = localStorage.getItem("user", JSON.parse(user));
+    if (!loginUser) {
+      navigate("/admin/login");
+    } else {
+      setUser(loginUser);
+    }
+  }, [navigate, user, setUser]);
 
   React.useEffect(() => {
     axios
