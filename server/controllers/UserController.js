@@ -119,11 +119,16 @@ class UserController {
   }
 
   static async register(req, res) {
-    try {
-      const { name, email, password, salt, birthDate, gender, avatar, type } =
-        req.body;
+    const { name, email, password, salt, birthDate, gender, avatar, type } =
+      req.body;
 
-      let result = await user.create({
+    try {
+      const existUser = await user.findOne({ where: { email } });
+
+      if (existUser)
+        return res.status(400).json({ message: "Email already exist!" });
+
+      const result = await user.create({
         name,
         email,
         password,
@@ -133,6 +138,7 @@ class UserController {
         avatar,
         type,
       });
+
       res.status(201).json(result);
     } catch (error) {
       res.status(500).json(error);
