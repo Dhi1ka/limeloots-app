@@ -52,7 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       birthDate: DataTypes.DATE,
       gender: DataTypes.STRING,
       avatar: DataTypes.STRING,
-      type: DataTypes.STRING,
+      type: {
+        type: DataTypes.STRING,
+        values: ["Admin", "User"],
+      },
     },
     {
       hooks: {
