@@ -3,10 +3,10 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const Home = () => {
+const Home = ({ user, setUser }) => {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <div className="container text-center">
         <h1>Welcome to Limeloots</h1>
         <p>Search our products here</p>

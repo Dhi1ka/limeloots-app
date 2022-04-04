@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ user, setUser }) => {
+  const navigate = useNavigate();
+  const loginUser = localStorage.getItem("user", JSON.parse(user));
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -36,36 +44,45 @@ const Navbar = () => {
                 Cart
               </Link>
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                User
-              </a>
-              <ul
-                className="dropdown-menu dropdown-menu-end ms-auto"
-                aria-labelledby="navbarDropdown"
-              >
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Account Profile
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Logout
-                  </a>
-                </li>
-              </ul>
-            </li>
+
+            {loginUser ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  User
+                </a>
+                <ul
+                  className="dropdown-menu dropdown-menu-end ms-auto"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Account Profile
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

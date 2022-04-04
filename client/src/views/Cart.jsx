@@ -3,10 +3,10 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const Cart = () => {
+const Cart = ({ user, setUser }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <h1>Cart</h1>
       <Footer />
     </div>

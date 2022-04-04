@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
-const Products = () => {
+const Products = ({ user, setUser }) => {
   const [products, setProducts] = React.useState([]);
   const url = "http://localhost:5000";
 
@@ -17,7 +17,7 @@ const Products = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <h1>Products</h1>
       {products.map((product) => {
         return <p>{JSON.stringify(product)}</p>;
