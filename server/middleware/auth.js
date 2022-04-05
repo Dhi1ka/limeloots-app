@@ -5,7 +5,7 @@ const { tokenVerifier } = require("../helpers/jwt");
 const authentication = (req, res, next) => {
   console.log(`Auth Middleware is Work!`);
 
-  const { access_token } = req.headers.access_token;
+  const { access_token } = req.headers;
 
   if (access_token) {
     try {
@@ -29,7 +29,7 @@ const authentication = (req, res, next) => {
 const authorization = (req, res, next) => {
   console.log("Authorization Middleware is Work!");
 
-  const { access_token } = req.headers.access_token;
+  const { access_token } = req.headers;
 
   if (!access_token) {
     res.status(403).json({
