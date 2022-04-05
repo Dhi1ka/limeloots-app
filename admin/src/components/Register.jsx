@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./auth.css";
 
-const Register = () => {
+const Register = ({ user, setUser }) => {
   const url = "http://localhost:5000";
   const navigate = useNavigate();
   const [registerUser, setRegisterUser] = React.useState({
@@ -13,6 +13,15 @@ const Register = () => {
     password: "",
     type: "Admin",
   });
+
+  React.useEffect(() => {
+    const loginUser = localStorage.getItem("user", JSON.parse(user));
+    if (loginUser) {
+      navigate("/");
+    } else {
+      navigate("/admin/register");
+    }
+  }, [navigate, user]);
 
   const handleRegister = (e) => {
     e.preventDefault();

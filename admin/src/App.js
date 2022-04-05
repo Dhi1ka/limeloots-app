@@ -27,8 +27,14 @@ const App = () => {
   return (
     <Routes>
       {/* Auth Route */}
-      <Route path="/admin/login" element={<Login />} />
-      <Route path="/admin/register" element={<Register />} />
+      <Route
+        path="/admin/login"
+        element={<Login user={user} setUser={setUser} />}
+      />
+      <Route
+        path="/admin/register"
+        element={<Register user={user} setUser={setUser} />}
+      />
       <Route
         path="/admin/dashboard"
         element={<Dashboard user={user} setUser={setUser} />}

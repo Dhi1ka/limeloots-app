@@ -91,6 +91,14 @@ const Products = ({ user, setUser }) => {
                         onClick={(e) => {
                           e.preventDefault();
 
+                          const user = JSON.parse(localStorage.getItem("user"));
+
+                          const config = {
+                            headers: {
+                              access_token: user.access_token,
+                            },
+                          };
+
                           swal({
                             title: "Are you sure?",
                             text: "This product will be deleted!",
@@ -102,6 +110,7 @@ const Products = ({ user, setUser }) => {
                               if (willDelete) {
                                 axios.delete(
                                   `${url}/products/delete/${product.id}`,
+                                  config,
                                 );
                                 swal(
                                   "Successful! The Product has been deleted!",

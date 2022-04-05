@@ -44,6 +44,14 @@ const EditProduct = ({ user, setUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     swal({
       title: "Are you sure want to update?",
       text: "You will update the change!",
@@ -53,7 +61,7 @@ const EditProduct = ({ user, setUser }) => {
     }).then((willUpdate) => {
       if (willUpdate) {
         axios
-          .put(`${url}/products/edit/${id}`, product)
+          .put(`${url}/products/edit/${id}`, product, config)
           .then((response) => {
             setProduct(response.data);
             swal("Successful!", "The Product has been updated!", "success");

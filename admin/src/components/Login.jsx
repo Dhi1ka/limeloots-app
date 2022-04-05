@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import "./auth.css";
 
-const Login = () => {
+const Login = ({ user, setUser }) => {
   const url = "http://localhost:5000";
   const navigate = useNavigate();
   const [loginUser, setLoginUser] = React.useState({
@@ -12,6 +12,15 @@ const Login = () => {
     password: "",
     type: "Admin",
   });
+
+  React.useEffect(() => {
+    const loginUser = localStorage.getItem("user", JSON.parse(user));
+    if (loginUser) {
+      navigate("/");
+    } else {
+      navigate("/admin/login");
+    }
+  }, [navigate, user]);
 
   const handleLogin = (e) => {
     e.preventDefault();
