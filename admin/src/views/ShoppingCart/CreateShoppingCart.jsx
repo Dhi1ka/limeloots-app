@@ -17,8 +17,16 @@ const CreateShoppingCart = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .post(`${url}/shopping-carts/create`, postCart)
+      .post(`${url}/shopping-carts/create`, postCart, config)
       .then((response) => {
         setPostCart(response.data);
         swal("Successful!", "The Shopping Cart has been saved!", "success");

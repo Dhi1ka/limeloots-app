@@ -24,8 +24,16 @@ const CreateOrder = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .post(`${url}/orders/create`, postOrder)
+      .post(`${url}/orders/create`, postOrder, config)
       .then((response) => {
         setPostOrder(response.data);
         swal("Successful!", "The Order has been saved!", "success");

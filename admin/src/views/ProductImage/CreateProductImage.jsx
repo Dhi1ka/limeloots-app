@@ -19,8 +19,16 @@ const CreateProductImage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .post(`${url}/product-images/create`, postProductImage)
+      .post(`${url}/product-images/create`, postProductImage, config)
       .then((response) => {
         setPostProductImage(response.data);
         swal("Successful!", "The Product Image has been saved!", "success");

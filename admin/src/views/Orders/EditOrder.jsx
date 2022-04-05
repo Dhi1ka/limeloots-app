@@ -33,6 +33,14 @@ const EditOrder = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     swal({
       title: "Are you sure want to update?",
       text: "You will update the change!",
@@ -42,7 +50,7 @@ const EditOrder = () => {
     }).then((willUpdate) => {
       if (willUpdate) {
         axios
-          .put(`${url}/orders/edit/${id}`, order)
+          .put(`${url}/orders/edit/${id}`, order, config)
           .then((response) => {
             setOrder(response.data);
             swal("Successful!", "The Order has been updated!", "success");

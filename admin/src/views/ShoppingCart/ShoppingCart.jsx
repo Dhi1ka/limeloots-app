@@ -61,6 +61,14 @@ const ShoppingCart = () => {
                         onClick={(e) => {
                           e.preventDefault();
 
+                          const user = JSON.parse(localStorage.getItem("user"));
+
+                          const config = {
+                            headers: {
+                              access_token: user.access_token,
+                            },
+                          };
+
                           swal({
                             title: "Are you sure?",
                             text: "This shopping cart will be deleted!",
@@ -72,6 +80,7 @@ const ShoppingCart = () => {
                               if (willDelete) {
                                 axios.delete(
                                   `${url}/shopping-carts/delete/${cart.id}`,
+                                  config,
                                 );
                                 swal(
                                   "Successful! The Shopping Cart has been deleted!",

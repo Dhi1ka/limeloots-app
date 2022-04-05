@@ -63,6 +63,14 @@ const LineItem = () => {
                         onClick={(e) => {
                           e.preventDefault();
 
+                          const user = JSON.parse(localStorage.getItem("user"));
+
+                          const config = {
+                            headers: {
+                              access_token: user.access_token,
+                            },
+                          };
+
                           swal({
                             title: "Are you sure?",
                             text: "This line item will be deleted!",
@@ -74,6 +82,7 @@ const LineItem = () => {
                               if (willDelete) {
                                 axios.delete(
                                   `${url}/line-items/delete/${item.id}`,
+                                  config,
                                 );
                                 swal(
                                   "Successful! The line item has been deleted!",

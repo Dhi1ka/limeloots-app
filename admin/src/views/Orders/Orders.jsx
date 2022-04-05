@@ -78,6 +78,14 @@ const Orders = () => {
                         onClick={(e) => {
                           e.preventDefault();
 
+                          const user = JSON.parse(localStorage.getItem("user"));
+
+                          const config = {
+                            headers: {
+                              access_token: user.access_token,
+                            },
+                          };
+
                           swal({
                             title: "Are you sure?",
                             text: "This order will be deleted!",
@@ -89,6 +97,7 @@ const Orders = () => {
                               if (willDelete) {
                                 axios.delete(
                                   `${url}/orders/delete/${order.id}`,
+                                  config,
                                 );
                                 swal(
                                   "Successful! The Order has been deleted!",

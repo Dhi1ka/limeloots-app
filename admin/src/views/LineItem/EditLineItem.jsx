@@ -26,8 +26,16 @@ const EditLineItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .put(`${url}/line-items/edit/${id}`, lineItem)
+      .put(`${url}/line-items/edit/${id}`, lineItem, config)
       .then((response) => {
         setLineItem(response.data);
         swal("Successful!", "The Line Item has been updated!", "success");

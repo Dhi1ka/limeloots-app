@@ -18,8 +18,16 @@ const CreateLineItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .post(`${url}/line-items/create`, postLineItem)
+      .post(`${url}/line-items/create`, postLineItem, config)
       .then((response) => {
         setPostLineItem(response.data);
         swal("Successful!", "The Line Item has been saved!", "success");

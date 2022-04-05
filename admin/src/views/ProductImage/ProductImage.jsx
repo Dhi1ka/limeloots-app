@@ -65,6 +65,14 @@ const ProductImage = () => {
                         onClick={(e) => {
                           e.preventDefault();
 
+                          const user = JSON.parse(localStorage.getItem("user"));
+
+                          const config = {
+                            headers: {
+                              access_token: user.access_token,
+                            },
+                          };
+
                           swal({
                             title: "Are you sure?",
                             text: "This product image will be deleted!",
@@ -76,6 +84,7 @@ const ProductImage = () => {
                               if (willDelete) {
                                 axios.delete(
                                   `${url}/product-images/delete/${image.id}`,
+                                  config,
                                 );
                                 swal(
                                   "Successful! The Product Image has been deleted!",

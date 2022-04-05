@@ -27,8 +27,16 @@ const EditProductImage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .put(`${url}/product-images/edit/${id}`, productImage)
+      .put(`${url}/product-images/edit/${id}`, productImage, config)
       .then((response) => {
         setProductImage(response.data);
         swal("Successful!", "The Product Image has been updated!", "success");
