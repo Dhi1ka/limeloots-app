@@ -10,6 +10,7 @@ const Login = () => {
   const [loginUser, setLoginUser] = React.useState({
     email: "",
     password: "",
+    type: "Admin",
   });
 
   const handleLogin = (e) => {
@@ -66,6 +67,12 @@ const Login = () => {
             required
           />
         </div>
+        <input
+          type="hidden"
+          name="type"
+          id="type"
+          onChange={(e) => setLoginUser({ ...loginUser, type: e.target.value })}
+        />
         <div className="text-center">
           <button className="btn btn-primary" type="submit">
             Login

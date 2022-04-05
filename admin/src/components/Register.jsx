@@ -11,6 +11,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    type: "Admin",
   });
 
   const handleRegister = (e) => {
@@ -82,6 +83,14 @@ const Register = () => {
             required
           />
         </div>
+        <input
+          type="hidden"
+          name="type"
+          id="type"
+          onChange={(e) =>
+            setRegisterUser({ ...registerUser, type: e.target.value })
+          }
+        />
         <div className="text-center">
           <button className="btn btn-primary" type="submit">
             Register

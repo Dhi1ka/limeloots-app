@@ -36,8 +36,16 @@ const CreateProduct = ({ user, setUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    const config = {
+      headers: {
+        access_token: user.access_token,
+      },
+    };
+
     axios
-      .post(`${url}/products/create`, postProduct)
+      .post(`${url}/products/create`, postProduct, config)
       .then((response) => {
         setPostProduct(response.data);
         swal("Successful!", "The Product has been saved!", "success");
