@@ -1,9 +1,12 @@
-const { order } = require("../models");
+const { user, order } = require("../models");
 
 class OrderController {
   static async getAllOrders(req, res) {
     try {
-      const orders = await order.findAll({});
+      const orders = await order.findAll({
+        order: [["id", "ASC"]],
+        include: [user],
+      });
 
       res.status(200).json(orders);
     } catch (error) {

@@ -1,9 +1,12 @@
-const { lineItem } = require("../models");
+const { product, shoppingCart, lineItem } = require("../models");
 
 class LineItemController {
   static async getAllLineItems(req, res) {
     try {
-      const lineItems = await lineItem.findAll({});
+      const lineItems = await lineItem.findAll({
+        order: [["id", "ASC"]],
+        include: [product, shoppingCart],
+      });
 
       res.status(200).json(lineItems);
     } catch (error) {

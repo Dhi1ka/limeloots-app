@@ -1,9 +1,12 @@
-const { shoppingCart } = require("../models");
+const { user, shoppingCart } = require("../models");
 
 class ShoppingCartController {
   static async getAllShoppingCarts(req, res) {
     try {
-      const shoppingCarts = await shoppingCart.findAll({});
+      const shoppingCarts = await shoppingCart.findAll({
+        order: [["id", "ASC"]],
+        include: [user],
+      });
 
       res.status(200).json(shoppingCarts);
     } catch (error) {

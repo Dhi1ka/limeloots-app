@@ -1,9 +1,12 @@
-const { productImage } = require("../models");
+const { product, productImage } = require("../models");
 
 class ProductImageController {
   static async getAllProductImages(req, res) {
     try {
-      const productImages = await productImage.findAll({});
+      const productImages = await productImage.findAll({
+        order: [["id", "ASC"]],
+        include: [product],
+      });
 
       res.status(200).json(productImages);
     } catch (error) {
