@@ -26,7 +26,7 @@ const ProductImage = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>Product Image</h1>
+          <h1>Product Images</h1>
           <Link
             to="/admin/product-images/create"
             className=" mb-2 btn btn-sm btn-primary"
@@ -41,6 +41,7 @@ const ProductImage = () => {
                 <th>File Size</th>
                 <th>File Type</th>
                 <th>Primary</th>
+                <th>Product</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -53,6 +54,7 @@ const ProductImage = () => {
                     <td>{image.fileSize}</td>
                     <td>{image.fileType}</td>
                     <td>{image.primary}</td>
+                    <td>{image.product}</td>
                     <td>
                       <Link
                         to={`/admin/product-images/edit/${image.id}`}

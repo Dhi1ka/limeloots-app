@@ -20,6 +20,7 @@ const CreateOrder = () => {
     city: "",
     address: "",
     status: "",
+    user: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -180,17 +181,21 @@ const CreateOrder = () => {
               <label htmlFor="city">City</label>
             </div>
             <div className="form-floating mb-3">
-              <input
+              <textarea
                 className="form-control"
                 type="text"
                 name="address"
                 id="address"
                 placeholder="Address"
                 onChange={(e) =>
-                  setPostOrder({ ...postOrder, address: e.target.value })
+                  setPostOrder({
+                    ...postOrder,
+                    address: e.target.value,
+                  })
                 }
                 required
-              />
+                style={{ height: 100 }}
+              ></textarea>
               <label htmlFor="address">Address</label>
             </div>
             <div className="mb-3">
@@ -215,6 +220,14 @@ const CreateOrder = () => {
                 <option value="Closed">Closed</option>
               </select>
             </div>
+            <input
+              type="hidden"
+              name="user"
+              id="user"
+              onChange={(e) =>
+                setPostOrder({ ...postOrder, user: e.target.value })
+              }
+            />
             <div>
               <button type="submit" className="btn btn-primary me-2">
                 Save

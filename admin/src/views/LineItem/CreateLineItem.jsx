@@ -13,6 +13,8 @@ const CreateLineItem = () => {
     qty: "",
     status: "",
     orderName: "",
+    product: "",
+    cartId: "",
   });
 
   const handleSubmit = (e) => {
@@ -60,7 +62,7 @@ const CreateLineItem = () => {
         <Sidebar />
         <div>
           <Navbar />
-          <h1>CreateLineItem</h1>
+          <h1>Create Line Item</h1>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
               <input
@@ -116,6 +118,22 @@ const CreateLineItem = () => {
               />
               <label htmlFor="orderName">Order Name</label>
             </div>
+            <input
+              type="hidden"
+              name="product"
+              id="product"
+              onChange={(e) =>
+                setPostLineItem({ ...postLineItem, product: e.target.value })
+              }
+            />
+            <input
+              type="hidden"
+              name="cartId"
+              id="cartId"
+              onChange={(e) =>
+                setPostLineItem({ ...postLineItem, cartId: e.target.value })
+              }
+            />
             <div>
               <button type="submit" className="btn btn-primary me-2">
                 Save

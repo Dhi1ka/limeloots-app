@@ -60,6 +60,7 @@ const Products = ({ user, setUser }) => {
                 <th>Total Sold</th>
                 <th>Rating</th>
                 <th>Views</th>
+                <th>User</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -80,6 +81,7 @@ const Products = ({ user, setUser }) => {
                     <td>{product.totalSold}</td>
                     <td>{product.rating}</td>
                     <td>{product.views}</td>
+                    <td>{product.user}</td>
                     <td>
                       <Link
                         to={`/admin/products/edit/${product.id}`}

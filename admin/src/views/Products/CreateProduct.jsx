@@ -22,6 +22,7 @@ const CreateProduct = ({ user, setUser }) => {
     totalSold: "",
     rating: "",
     views: "",
+    user: "",
   });
 
   React.useEffect(() => {
@@ -273,6 +274,14 @@ const CreateProduct = ({ user, setUser }) => {
               />
               <label htmlFor="views">Views</label>
             </div>
+            <input
+              type="hidden"
+              name="user"
+              id="user"
+              onChange={(e) =>
+                setPostProduct({ ...postProduct, user: e.target.value })
+              }
+            />
             <div>
               <button type="submit" className="btn btn-primary me-2">
                 Save

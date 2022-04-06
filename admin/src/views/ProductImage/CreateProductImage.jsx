@@ -14,6 +14,7 @@ const CreateProductImage = () => {
     fileSize: "",
     fileType: "",
     primary: "",
+    product: "",
   });
 
   const handleSubmit = (e) => {
@@ -61,15 +62,19 @@ const CreateProductImage = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>CreateProductImage</h1>
+          <h1>Create Product Image</h1>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
+            <div className=" mb-3">
+              <label className="form-label" htmlFor="fileName">
+                File Name
+              </label>
               <input
                 className="form-control"
-                type="text"
+                type="file"
                 name="fileName"
                 id="fileName"
                 placeholder="File Name"
+                accept="image/jpeg,image/png"
                 onChange={(e) =>
                   setPostProductImage({
                     ...postProductImage,
@@ -78,7 +83,6 @@ const CreateProductImage = () => {
                 }
                 required
               />
-              <label htmlFor="fileName">File Name</label>
             </div>
             <div className="form-floating mb-3">
               <input
@@ -136,6 +140,17 @@ const CreateProductImage = () => {
                 Primary
               </label>
             </div>
+            <input
+              type="hidden"
+              name="product"
+              id="product"
+              onChange={(e) =>
+                setPostProductImage({
+                  ...postProductImage,
+                  product: e.target.value,
+                })
+              }
+            />
             <div>
               <button type="submit" className="btn btn-primary me-2">
                 Save

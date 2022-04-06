@@ -83,7 +83,7 @@ const EditShoppingCart = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>Create Shopping Cart</h1>
+          <h1>Edit Shopping Cart</h1>
           <form autoComplete="off" noValidate onSubmit={handleSubmit}>
             <div className="form-floating mb-3">
               <input

@@ -47,6 +47,7 @@ const Orders = () => {
                 <th>City</th>
                 <th>Address</th>
                 <th>Status</th>
+                <th>User</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -65,6 +66,7 @@ const Orders = () => {
                     <td>{order.city}</td>
                     <td>{order.address}</td>
                     <td>{order.status}</td>
+                    <td>{order.user}</td>
                     <td>
                       <Link
                         to={`/admin/orders/edit/${order.id}`}

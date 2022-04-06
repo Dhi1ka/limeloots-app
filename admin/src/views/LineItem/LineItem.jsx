@@ -26,7 +26,7 @@ const LineItem = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>LineItem</h1>
+          <h1>Line Items</h1>
           <Link
             to="/admin/line-items/create"
             className=" mb-2 btn btn-sm btn-primary"
@@ -40,6 +40,8 @@ const LineItem = () => {
                 <th>Qty</th>
                 <th>Status</th>
                 <th>Order Name</th>
+                <th>Product</th>
+                <th>Shopping Cart ID</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -51,6 +53,8 @@ const LineItem = () => {
                     <td>{item.qty}</td>
                     <td>{item.status}</td>
                     <td>{item.orderName}</td>
+                    <td>{item.product}</td>
+                    <td>{item.cartId}</td>
                     <td>
                       <Link
                         to={`/admin/line-items/edit/${item.id}`}

@@ -26,7 +26,7 @@ const ShoppingCart = () => {
         <Sidebar />
         <div className="col">
           <Navbar />
-          <h1>Shopping Cart</h1>
+          <h1>Shopping Carts</h1>
           <Link
             to="/admin/shopping-carts/create"
             className=" mb-2 btn btn-sm btn-primary"
@@ -39,6 +39,7 @@ const ShoppingCart = () => {
                 <th>No</th>
                 <th>Created On</th>
                 <th>Status</th>
+                <th>User</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -49,6 +50,7 @@ const ShoppingCart = () => {
                     <td></td>
                     <td>{cart.createdOn}</td>
                     <td>{cart.status}</td>
+                    <td>{cart.user}</td>
                     <td>
                       <Link
                         to={`/admin/shopping-carts/edit/${cart.id}`}

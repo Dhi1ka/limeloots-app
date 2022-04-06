@@ -12,6 +12,7 @@ const CreateShoppingCart = () => {
   const [postCart, setPostCart] = React.useState({
     createdOn: "",
     status: "",
+    user: "",
   });
 
   const handleSubmit = (e) => {
@@ -94,6 +95,14 @@ const CreateShoppingCart = () => {
                 <option value="Close">Close</option>
               </select>
             </div>
+            <input
+              type="hidden"
+              name="user"
+              id="user"
+              onChange={(e) =>
+                setPostCart({ ...postCart, user: e.target.value })
+              }
+            />
             <div>
               <button type="submit" className="btn btn-primary me-2">
                 Save

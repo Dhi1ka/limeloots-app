@@ -205,7 +205,7 @@ const EditOrder = () => {
               <label htmlFor="city">City</label>
             </div>
             <div className="form-floating mb-3">
-              <input
+              <textarea
                 className="form-control"
                 type="text"
                 name="address"
@@ -213,10 +213,14 @@ const EditOrder = () => {
                 placeholder="Address"
                 value={order.address}
                 onChange={(e) =>
-                  setOrder({ ...order, address: e.target.value })
+                  setOrder({
+                    ...order,
+                    address: e.target.value,
+                  })
                 }
                 required
-              />
+                style={{ height: 100 }}
+              ></textarea>
               <label htmlFor="address">Address</label>
             </div>
             <div className="mb-3">
