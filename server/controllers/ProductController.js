@@ -1,11 +1,11 @@
-const { user, product } = require("../models");
+const { user, productImage, product } = require("../models");
 
 class ProductController {
   static async getAllProducts(req, res) {
     try {
       const products = await product.findAll({
         order: [["id", "ASC"]],
-        include: [user],
+        include: [user, productImage],
       });
 
       res.status(200).json(products);
