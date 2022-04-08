@@ -41,7 +41,6 @@ const ProductImage = () => {
                 <th>File Size</th>
                 <th>File Type</th>
                 <th>Primary</th>
-                <th>Product</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -54,7 +53,6 @@ const ProductImage = () => {
                     <td>{image.fileSize}</td>
                     <td>{image.fileType}</td>
                     <td>{image.primary}</td>
-                    <td>{image.product}</td>
                     <td>
                       <Link
                         to={`/admin/product-images/edit/${image.id}`}

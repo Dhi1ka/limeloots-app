@@ -14,7 +14,6 @@ const CreateProductImage = () => {
     fileSize: "",
     fileType: "",
     primary: "",
-    product: "",
   });
 
   const handleSubmit = (e) => {
@@ -140,17 +139,6 @@ const CreateProductImage = () => {
                 Primary
               </label>
             </div>
-            <input
-              type="hidden"
-              name="product"
-              id="product"
-              onChange={(e) =>
-                setPostProductImage({
-                  ...postProductImage,
-                  product: e.target.value,
-                })
-              }
-            />
             <div>
               <button type="submit" className="btn btn-primary me-2">
                 Save

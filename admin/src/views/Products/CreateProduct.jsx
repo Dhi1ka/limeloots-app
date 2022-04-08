@@ -22,8 +22,18 @@ const CreateProduct = ({ user, setUser }) => {
     totalSold: "",
     rating: "",
     views: "",
+    productImage: "",
     user: "",
   });
+
+  const [image, setImage] = React.useState([]);
+
+  React.useEffect(() => {
+    axios
+      .get(`${url}/product-images`)
+      .then((response) => setImage(response.data))
+      .catch((error) => console.error(error));
+  }, []);
 
   React.useEffect(() => {
     const loginUser = localStorage.getItem("user", JSON.parse(user));
@@ -273,6 +283,29 @@ const CreateProduct = ({ user, setUser }) => {
                 required
               />
               <label htmlFor="views">Views</label>
+            </div>
+            <div>
+              <label htmlFor="productImage" className="form-label">
+                Product Image
+              </label>
+              <select
+                className="form-select"
+                name="productImage"
+                id="productImage"
+                onChange={(e) =>
+                  setPostProduct({
+                    ...postProduct,
+                    productImage: e.target.value,
+                  })
+                }
+              >
+                <option value="Select One.." selected disabled>
+                  Select One..
+                </option>
+                {image.map((img) => {
+                  return <option value={img.fileName}>{img.fileName}</option>;
+                })}
+              </select>
             </div>
             <input
               type="hidden"

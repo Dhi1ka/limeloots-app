@@ -60,6 +60,7 @@ const Products = ({ user, setUser }) => {
                 <th>Total Sold</th>
                 <th>Rating</th>
                 <th>Views</th>
+                <th>Product Image</th>
                 <th>User</th>
                 <th>Actions</th>
               </tr>
@@ -81,6 +82,9 @@ const Products = ({ user, setUser }) => {
                     <td>{product.totalSold}</td>
                     <td>{product.rating}</td>
                     <td>{product.views}</td>
+                    <td>
+                      <img src={product.productImage} alt="productImage" />
+                    </td>
                     <td>{product.user}</td>
                     <td>
                       <Link
