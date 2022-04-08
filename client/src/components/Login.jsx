@@ -10,7 +10,7 @@ const Login = () => {
   const [loginUser, setLoginUser] = React.useState({
     email: "",
     password: "",
-    type: "user",
+    type: "User",
   });
 
   const handleLogin = (e) => {
@@ -74,9 +74,12 @@ const Login = () => {
           onChange={(e) => setLoginUser({ ...loginUser, type: e.target.value })}
         />
         <div className="text-center">
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary me-2" type="submit">
             Login
           </button>
+          <Link to="/" className="btn btn-warning">
+            Back
+          </Link>
         </div>
       </form>
       <div className="text-center">

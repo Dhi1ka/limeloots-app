@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -16,14 +17,38 @@ const Products = ({ user, setUser }) => {
   }, []);
 
   return (
-    <div>
+    <>
       <Navbar user={user} setUser={setUser} />
-      <h1>Products</h1>
-      {products.map((product) => {
-        return <p>{JSON.stringify(product)}</p>;
-      })}
-      <Footer />
-    </div>
+      <div className="container">
+        <h1>Products</h1>
+        <div className="row px-2 py-2">
+          {products.map((product) => {
+            return (
+              <Link
+                to={`/products/${product.id}`}
+                className="col-md-4 text-decoration-none text-black"
+              >
+                <div className="card" style={{ width: 350 }}>
+                  <img
+                    src="https://spoonacular.com/recipeImages/579247-556x370.jpg"
+                    alt=""
+                    className="card-img-top"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{product.name}</h5>
+                    <p className="card-text">{product.desc}</p>
+                    <a href="#" className="btn btn-primary">
+                      Buy IDR{product.price}
+                    </a>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+        <Footer />
+      </div>
+    </>
   );
 };
 

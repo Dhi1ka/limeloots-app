@@ -9,7 +9,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
-    type: "user",
+    type: "User",
   });
 
   const handleRegister = (e) => {
@@ -90,9 +90,12 @@ const Register = () => {
           }
         />
         <div className="text-center">
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn-primary me-2" type="submit">
             Register
           </button>
+          <Link to="/" className="btn btn-warning">
+            Back
+          </Link>
         </div>
       </form>
       <div className="text-center">

@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import "./main.css";
 import Home from "./views/Home";
 import Products from "./views/Products/Products";
+import Product from "./views/Products/Product";
 import Cart from "./views/Cart";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -18,6 +19,10 @@ const App = () => {
       <Route
         path="/products"
         element={<Products user={user} setUser={setUser} />}
+      />
+      <Route
+        path="/products/:id"
+        element={<Product user={user} setUser={setUser} />}
       />
       <Route path="/cart" element={<Cart user={user} setUser={setUser} />} />
       <Route path="/register" element={<Register />} />
