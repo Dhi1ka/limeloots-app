@@ -1,7 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  AiOutlineShoppingCart,
+  AiOutlineUser,
+  AiOutlineLogin,
+} from "react-icons/ai";
+import { BiLogIn } from "react-icons/bi";
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = ({ user, setUser, addCart, setAddCart }) => {
   const navigate = useNavigate();
   const loginUser = localStorage.getItem("user", JSON.parse(user));
 
@@ -41,7 +47,8 @@ const Navbar = ({ user, setUser }) => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/cart">
-                Cart
+                <AiOutlineShoppingCart fontSize={20} />{" "}
+                <span className="badge bg-info">{addCart}</span>
               </Link>
             </li>
 
@@ -55,7 +62,7 @@ const Navbar = ({ user, setUser }) => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  User
+                  <AiOutlineUser fontSize={20} />
                 </a>
                 <ul
                   className="dropdown-menu dropdown-menu-end ms-auto"
@@ -79,7 +86,7 @@ const Navbar = ({ user, setUser }) => {
             ) : (
               <li className="nav-item">
                 <Link className="nav-link" to="/login">
-                  Login
+                  <BiLogIn fontSize={20} />
                 </Link>
               </li>
             )}
