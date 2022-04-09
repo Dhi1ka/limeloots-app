@@ -1,10 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-  AiOutlineLogin,
-} from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
 
 const Navbar = ({ user, setUser, addCart, setAddCart }) => {
@@ -54,24 +50,23 @@ const Navbar = ({ user, setUser, addCart, setAddCart }) => {
 
             {loginUser ? (
               <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
+                <button
+                  className="btn btn-sm nav-link dropdown-toggle"
                   id="navbarDropdown"
-                  role="button"
+                  type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   <AiOutlineUser fontSize={20} />
-                </a>
+                </button>
                 <ul
                   className="dropdown-menu dropdown-menu-end ms-auto"
                   aria-labelledby="navbarDropdown"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <button className="dropdown-item" type="button">
                       Account Profile
-                    </a>
+                    </button>
                   </li>
                   <li>
                     <hr className="dropdown-divider" />

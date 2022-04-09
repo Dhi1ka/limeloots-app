@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const Cart = ({ user, setUser, addCart, setAddCart }) => {
+const Buy = ({ user, setUser, addCart, setAddCart }) => {
   return (
     <div>
       <Navbar
@@ -12,10 +12,10 @@ const Cart = ({ user, setUser, addCart, setAddCart }) => {
         addCart={addCart}
         setAddCart={setAddCart}
       />
-      <h1>Cart</h1>
+      <h1>Buy</h1>
       <Footer />
     </div>
   );
 };
 
-export default Cart;
+export default Buy;

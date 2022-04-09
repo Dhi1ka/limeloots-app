@@ -1,17 +1,20 @@
 import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { AiOutlineShoppingCart, AiOutlinePlus } from "react-icons/ai";
+import {
+  AiOutlineShoppingCart,
+  AiOutlinePlus,
+  AiOutlineSearch,
+} from "react-icons/ai";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-const Home = ({ user, setUser }) => {
+const Home = ({ user, setUser, addCart, setAddCart }) => {
   const url = "http://localhost:5000";
   const [products, setProducts] = React.useState([]);
   const [searchInput, setSearchInput] = React.useState("");
   const [searchFilter, setSearchFilter] = React.useState([]);
-  const [addCart, setAddCart] = React.useState(0);
 
   const searchProduct = (value) => {
     setSearchInput(value);
@@ -61,67 +64,85 @@ const Home = ({ user, setUser }) => {
             onChange={(e) => searchProduct(e.target.value)}
           />
           <button className="btn btn-outline-primary" type="submit">
-            Search
+            <AiOutlineSearch />
           </button>
         </form>
         <div className="row px-2 py-2">
           {searchInput.length > 1
             ? searchFilter.map((item) => {
                 return (
-                  <Link
-                    to={`/products/${item.id}`}
-                    className="col-md-4 text-decoration-none text-black"
-                  >
+                  <div className="col-md-4">
                     <div className="card" style={{ width: 350 }}>
-                      <img
-                        src={item.productImage}
-                        alt=""
-                        className="card-img-top"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
-                        <p className="card-text">{item.desc}</p>
-                        <a href="#" className="btn btn-primary">
-                          Buy IDR{item.price}
-                        </a>
-                      </div>
+                      <Link
+                        to={`/products/${item.id}`}
+                        className="text-decoration-none text-black"
+                      >
+                        <img
+                          src={item.productImage}
+                          alt="productImage"
+                          className="card-img-top"
+                        />
+                        <div className="card-body">
+                          <h5 className="card-title">{item.name}</h5>
+                          <p className="card-text">{item.desc}</p>
+                          <p>IDR{item.price}</p>
+                        </div>
+                        <div className="card-footer">
+                          <button
+                            type="button"
+                            onClick={handleCart}
+                            className="btn btn-sm btn-warning me-3"
+                          >
+                            <AiOutlineShoppingCart fontSize={16} />{" "}
+                            <AiOutlinePlus />
+                          </button>
+                          <Link
+                            to={`/products/buy/${item.id}`}
+                            className="btn btn-primary"
+                          >
+                            Buy Now
+                          </Link>
+                        </div>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 );
               })
             : products.map((product) => {
                 return (
-                  <div className="card" style={{ width: 350 }}>
-                    <Link
-                      to={`/products/${product.id}`}
-                      className="text-decoration-none text-black"
-                    >
-                      <img
-                        src={product.productImage}
-                        alt=""
-                        className="card-img-top"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">{product.name}</h5>
-                        <p className="card-text">{product.desc}</p>
-                        <p>IDR{product.price}</p>
-                      </div>
-                    </Link>
-                    <div className="card-footer">
-                      <button
-                        type="button"
-                        onClick={handleCart}
-                        className="btn btn-sm btn-warning me-3"
-                      >
-                        <AiOutlineShoppingCart fontSize={16} />{" "}
-                        <AiOutlinePlus />
-                      </button>
+                  <div className="col-md-4">
+                    <div className="card" style={{ width: 350 }}>
                       <Link
-                        to={`/products/buy/${product.id}`}
-                        className="btn btn-primary"
+                        to={`/products/${product.id}`}
+                        className="text-decoration-none text-black"
                       >
-                        Buy Now
+                        <img
+                          src={product.productImage}
+                          alt=""
+                          className="card-img-top"
+                        />
+                        <div className="card-body">
+                          <h5 className="card-title">{product.name}</h5>
+                          <p className="card-text">{product.desc}</p>
+                          <p>IDR{product.price}</p>
+                        </div>
                       </Link>
+                      <div className="card-footer">
+                        <button
+                          type="button"
+                          onClick={handleCart}
+                          className="btn btn-sm btn-warning me-3"
+                        >
+                          <AiOutlineShoppingCart fontSize={16} />{" "}
+                          <AiOutlinePlus />
+                        </button>
+                        <Link
+                          to={`/products/buy/${product.id}`}
+                          className="btn btn-primary"
+                        >
+                          Buy Now
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 );
