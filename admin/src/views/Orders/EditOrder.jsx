@@ -8,7 +8,7 @@ import Sidebar from "../../components/Sidebar";
 
 const EditOrder = () => {
   const navigate = useNavigate();
-  const url = "https://api-limeloots.herokuapp.com/";
+  const url = "https://api-limeloots.herokuapp.com";
   const { id } = useParams();
   const [order, setOrder] = React.useState({
     createdOn: "",

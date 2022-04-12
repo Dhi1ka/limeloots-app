@@ -7,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
 const CreateProductImage = () => {
-  const url = "https://api-limeloots.herokuapp.com/";
+  const url = "https://api-limeloots.herokuapp.com";
   const navigate = useNavigate();
   const [postProductImage, setPostProductImage] = React.useState({
     fileName: "",

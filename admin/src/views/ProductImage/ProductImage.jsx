@@ -10,7 +10,7 @@ import Sidebar from "../../components/Sidebar";
 
 const ProductImage = () => {
   const navigate = useNavigate();
-  const url = "https://api-limeloots.herokuapp.com/";
+  const url = "https://api-limeloots.herokuapp.com";
   const [images, setImage] = React.useState([]);
 
   React.useEffect(() => {

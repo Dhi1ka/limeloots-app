@@ -7,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
 const CreateProduct = ({ user, setUser }) => {
-  const url = "https://api-limeloots.herokuapp.com/";
+  const url = "https://api-limeloots.herokuapp.com";
   const navigate = useNavigate();
   const [postProduct, setPostProduct] = React.useState({
     name: "",

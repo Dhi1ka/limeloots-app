@@ -7,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
 const CreateLineItem = () => {
-  const url = "https://api-limeloots.herokuapp.com/";
+  const url = "https://api-limeloots.herokuapp.com";
   const navigate = useNavigate();
   const [postLineItem, setPostLineItem] = React.useState({
     qty: "",

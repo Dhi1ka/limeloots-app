@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 
 const Login = ({ user, setUser }) => {
-  const url = "https://api-limeloots.herokuapp.com/";
+  const url = "https://api-limeloots.herokuapp.com";
   const navigate = useNavigate();
   const [loginUser, setLoginUser] = React.useState({
     email: "",
