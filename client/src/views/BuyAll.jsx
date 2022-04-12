@@ -8,7 +8,7 @@ import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const BuyAll = ({ user, setUser, addCart, setAddCart }) => {
   const [cartProduct, setCartProduct] = React.useState([]);
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com";
 
   React.useEffect(() => {
     axios

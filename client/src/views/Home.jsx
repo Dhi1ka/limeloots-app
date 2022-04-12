@@ -11,7 +11,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Home = ({ user, setUser, addCart, setAddCart }) => {
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com";
   const [products, setProducts] = React.useState([]);
   const [searchInput, setSearchInput] = React.useState("");
   const [searchFilter, setSearchFilter] = React.useState([]);

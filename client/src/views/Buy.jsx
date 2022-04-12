@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 
 const Buy = ({ user, setUser, addCart, setAddCart }) => {
   const [buyProduct, setBuyProduct] = React.useState([]);
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com";
   const { id } = useParams();
 
   React.useEffect(() => {

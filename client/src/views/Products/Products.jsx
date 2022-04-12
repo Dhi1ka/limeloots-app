@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 
 const Products = ({ user, setUser, addCart, setAddCart }) => {
   const [products, setProducts] = React.useState([]);
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com";
 
   React.useEffect(() => {
     axios
