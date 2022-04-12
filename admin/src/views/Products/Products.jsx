@@ -13,7 +13,7 @@ import swal from "sweetalert";
 const Products = ({ user, setUser }) => {
   const navigate = useNavigate();
   const [products, setProducts] = React.useState([]);
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com/";
 
   React.useEffect(() => {
     const loginUser = localStorage.getItem("user", JSON.parse(user));

@@ -7,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
 const CreateShoppingCart = () => {
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com/";
   const navigate = useNavigate();
   const [postCart, setPostCart] = React.useState({
     createdOn: "",

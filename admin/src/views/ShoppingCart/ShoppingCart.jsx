@@ -11,7 +11,7 @@ import Sidebar from "../../components/Sidebar";
 const ShoppingCart = () => {
   const navigate = useNavigate();
   const [shoppingCart, setShoppingCart] = React.useState([]);
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com/";
 
   React.useEffect(() => {
     axios

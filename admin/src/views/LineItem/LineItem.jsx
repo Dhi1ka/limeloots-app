@@ -10,7 +10,7 @@ import Sidebar from "../../components/Sidebar";
 
 const LineItem = () => {
   const navigate = useNavigate();
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com/";
   const [lineItem, setLineItem] = React.useState([]);
 
   React.useEffect(() => {

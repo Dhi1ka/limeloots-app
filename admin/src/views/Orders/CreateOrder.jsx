@@ -8,7 +8,7 @@ import Sidebar from "../../components/Sidebar";
 
 const CreateOrder = () => {
   const navigate = useNavigate();
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com/";
   const [postOrder, setPostOrder] = React.useState({
     createdOn: "",
     subtotal: "",

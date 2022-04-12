@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./auth.css";
 
 const Register = ({ user, setUser }) => {
-  const url = "http://localhost:5000";
+  const url = "https://api-limeloots.herokuapp.com/";
   const navigate = useNavigate();
   const [registerUser, setRegisterUser] = React.useState({
     name: "",
