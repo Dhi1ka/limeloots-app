@@ -1,21 +1,21 @@
 import React from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
-const Buy = ({ user, setUser, addCart, setAddCart }) => {
-  const [buyProduct, setBuyProduct] = React.useState([]);
+const BuyAll = ({ user, setUser, addCart, setAddCart }) => {
+  const [cartProduct, setCartProduct] = React.useState([]);
   const url = "http://localhost:5000";
-  const { id } = useParams();
 
   React.useEffect(() => {
     axios
-      .get(`${url}/products/detail/${id}`)
-      .then((response) => setBuyProduct(response.data))
+      .get(`${url}/products`)
+      .then((response) => setCartProduct(response.data))
       .catch((error) => console.log(error));
-  }, [id]);
+  }, []);
 
   const handleProcess = (e) => {
     e.preventDefault();
@@ -73,23 +73,28 @@ const Buy = ({ user, setUser, addCart, setAddCart }) => {
                   className="form-control"
                 />
               </div>
-              <button className="btn btn-primary mt-3" type="submit">
-                Process to Buy IDR{buyProduct.price}
-              </button>
+              <div className="mt-3">
+                <Link to="/products" className="btn btn btn-secondary me-2">
+                  <AiOutlineArrowLeft fontSize={16} /> Back to Products
+                </Link>
+                <button className="btn btn-primary" type="submit">
+                  Process to Buy IDR{cartProduct.price}
+                </button>
+              </div>
             </form>
           </div>
           <div className="col-md-4">
             <ul className="list-group mb-3">
               <li className="list-group-item d-flex justify-content-between lh-sm">
                 <div>
-                  <h5 className="my-0">{buyProduct.name}</h5>
-                  <small className="text-muted">{buyProduct.desc}</small>
+                  <h5 className="my-0">{cartProduct.name}</h5>
+                  <small className="text-muted">{cartProduct.desc}</small>
                 </div>
-                <span className="text-muted">IDR{buyProduct.price}</span>
+                <span className="text-muted">IDR{cartProduct.price}</span>
               </li>
               <li className="list-group-item d-flex justify-content-between">
                 <span>Total (IDR)</span>
-                <strong>IDR{buyProduct.price}</strong>
+                <strong>IDR{cartProduct.price}</strong>
               </li>
             </ul>
           </div>
@@ -100,4 +105,4 @@ const Buy = ({ user, setUser, addCart, setAddCart }) => {
   );
 };
 
-export default Buy;
+export default BuyAll;

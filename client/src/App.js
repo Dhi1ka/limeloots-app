@@ -10,6 +10,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import NotFound from "./views/NotFound.jsx";
 import Buy from "./views/Buy";
+import BuyAll from "./views/BuyAll";
 
 const App = () => {
   const [user, setUser] = React.useState(null);
@@ -65,6 +66,17 @@ const App = () => {
         path="/products/buy/:id"
         element={
           <Buy
+            user={user}
+            setUser={setUser}
+            addCart={addCart}
+            setAddCart={setAddCart}
+          />
+        }
+      />
+      <Route
+        path="/products/buy/all"
+        element={
+          <BuyAll
             user={user}
             setUser={setUser}
             addCart={addCart}
